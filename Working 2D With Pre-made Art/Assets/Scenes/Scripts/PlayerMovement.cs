@@ -24,6 +24,27 @@ public class PlayerMovement : MonoBehaviour
             rb.sharedMaterial = frictionMoving;
         }
 
+        if (movement.x > 0)
+        {
+            animator.SetFloat("idleLeftRight", 1);
+            animator.SetFloat("idleFrontBack", 0);
+        }
+        if (movement.x < 0)
+        {
+            animator.SetFloat("idleLeftRight", -1);
+            animator.SetFloat("idleFrontBack", 0);
+        }
+        if (movement.y > 0)
+        {
+            animator.SetFloat("idleFrontBack", 1);
+            animator.SetFloat("idleLeftRight", 0);
+        }
+        if (movement.y < 0)
+        {
+            animator.SetFloat("idleFrontBack", -1);
+            animator.SetFloat("idleLeftRight", 0);
+        }
+
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
@@ -33,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
     int flag = 0;
     private void FixedUpdate()
     {
-        Debug.Log(movement.x + " " + movement.y);
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); // Move rigidbody according to horizontal/vertical axes and moveSpeed
     }
 }
