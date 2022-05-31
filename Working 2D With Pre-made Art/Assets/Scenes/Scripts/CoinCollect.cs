@@ -9,7 +9,7 @@ public class CoinCollect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Coin")
+        if (collision.tag == "Coin" && !gameObject.CompareTag("MainCamera"))
         {
             Debug.Log("Player has collected a coin!");
             Destroy(collision.gameObject, 0);
